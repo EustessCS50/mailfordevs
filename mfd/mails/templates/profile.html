@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Login - MailForDevs</title>
+
+
+  <style type="text/css">
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    body {
+      color: #aa082e;
+      background-color: #b6bde7;
+      font-family: 'Roboto', sans-serif;
+    }
+    a:link {
+      text-decoration: none;
+
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background:-webkit-linear-gradient(left, bisque, rgb(116, 96, 72));
+      color: black;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+    .dev-info{
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+    .dev-info .dev-status, .config{
+        background: bisque;
+        height: 200px;
+        width: 550px;
+        padding:10px;
+        margin-left:50px;
+        border-radius: 10px;
+    }
+    .dev-info .dev-status .banner{
+        display: flex;
+        justify-content: center;
+        background-color: rgb(12, 12, 12);
+        color: bisque;
+        padding: 10px;
+    }
+    .dev-info .config .banner{
+        display: flex;
+        justify-content: center;
+        background-color: rgb(12, 12, 12);
+        color: bisque;
+        padding: 10px;
+    }
+    .dev-info .dev-status .info-content{
+        display: flex;
+        justify-content: left;
+        padding:20px;
+        color:black;
+    }
+    .dev-info .dev-status .config-content{
+        display: inline-block;
+        color:black;
+    }
+    
+  </style>
+
+</head>
+
+<body>
+  {% include "navbar.html" %}
+  <!--- login page for doctor by admin(sumit)  ---------->
+  <div class="note">
+    <h2>Welcome <strong>{{request.user}}</strong></h2>
+  </div>
+  <div class="dev-info">
+      <div class="dev-status">
+        <div class="banner">
+            <h2>User Information</h2>
+        </div>
+         <div class="info-content">
+            <p><strong>Username:</strong><br><br>{{request.user}}</p>
+            <br>
+            <p><strong>Email:</strong><br><br>{{request.user.email}}</p>
+            <br>
+            <p><strong>Auth Token:</strong><br><br>{{request.user.auth_token}}</p>
+            <br>
+            <p><strong>Date Created:</strong><br><br> {{dev.created}}</p>
+            <br>
+            <p><strong>Account Active:</strong><br> {{dev.active}}</p>
+            <br>
+            <p><strong>Account Premium:</strong><br> {{dev.premium}}</p>
+         </div>
+      </div>
+      <div class="config">
+        <div class="banner">
+            <h2>User Email Config V1</h2>
+        </div>
+        <div class="config-content">
+            <p><strong>Email Host:</strong>{{config.email_host}}</p>
+            <p><strong>Email Port:</strong>{{config.email_port}}</p>
+            <p><strong>Email Host User:</strong>{{config.email_host_user}}</p>
+            <p><strong>Email Host Password:</strong>{{config.email_host_password}}</p>
+            <p><strong>Email Host Use TLS:</strong>{{config.email_host_use_tls}}</p>
+            <p><strong>Email Host Use SSL:</strong>{{config.email_host_use_ssl}}</p>
+            <br><br>
+            <p><a href="{% url 'edit_config' request.user.username %}"><em>Edit&raquo;</em></a></p>
+        </div>
+      </div>
+  </div>
+ 
+
+  <br><br><br>
+  {% include "footer.html" %}
+</body>
+
+</html>

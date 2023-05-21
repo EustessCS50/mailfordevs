@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>signup-MailForDevs</title>
+  <style type="text/css">
+    body {
+      color: #aa082e;
+      background-color: #b6bde7;
+      font-family: 'Roboto', sans-serif;
+    }
+    .main{
+      min-height: 610px;
+      background-color: #b6bde7;
+    }
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .bt{
+      display: flex;
+    }
+    .bt .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 40%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+    @media (max-width:800px) {
+      .bt{
+        justify-content: center;
+      }
+      .bt .btnSubmit{
+        width: 50%;
+      }
+    }
+    @media (max-width:400px) {
+      .bt{
+        justify-content: center;
+      }
+      .bt .btnSubmit{
+        width: 80%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  {% include "navbar.html" %}
+
+  <!--- signup page for doctor by admin(sumit)  ---------->
+  <div class="main">
+    <br><br>
+    <br><br>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="container register-form">
+        <div class="form">
+          <div class="note">
+            <p>MFD - Signup Page</p>
+          </div>
+  
+          <div class="form-content">
+            <div class="row">
+              <div class="col-md-6">
+                
+                <div class="form-group">
+                  {% render_field userForm.username class="form-control" placeholder="Type Username" %}
+                </div>
+                <br>
+                <div class="form-group">
+                  {% render_field userForm.email class="form-control" placeholder="Type Email" %}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {% render_field userForm.password1 class="form-control" placeholder="Type Password" id="passw" %}
+                  <input type="checkbox" id="show" onclick="showPSD()"> Show Password
+                </div>
+                <div class="form-group">
+                  {% render_field userForm.password2 class="form-control" placeholder="Confirm Password" id="passw2" %}
+                  <input type="checkbox" id="show" onclick="showPSD()"> Show Password
+                </div>
+              </div>
+            </div>
+            <div class="bt">
+              <button type="submit" class="btnSubmit">Register</button>
+            </div>
+            <div class="text-center">Already have an account? <a href="{% url 'login' %}">Login here</a></div>
+          </div>
+        </div>
+      </div>
+  
+    </form>
+  </div>
+
+  {% include "footer.html" %}
+  <script>
+    var psd = document.getElementById('passw')
+    var psd2 = document.getElementById('passw2')
+    function showPSD(){
+      if (psd.type == "password" && psd2.type == "password"){
+        psd.type = "text";
+        psd2.type = "text";
+      }else{
+        psd.type = "password";
+        psd2.type = "password";
+      }
+    }
+  </script>
+</body>
+
+
+</html>

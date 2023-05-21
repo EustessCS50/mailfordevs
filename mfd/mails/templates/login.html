@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Login - MailForDevs</title>
+
+  <style type="text/css">
+    body {
+      color: #aa082e;
+      background-color: #b6bde7;
+      font-family: 'Roboto', sans-serif;
+    }
+    .main{
+      /* background-color: black;  Besong! use this one as darkmode */ 
+      background-color: #b6bde7;
+      min-height: 610px;
+    }
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .bt{
+      display: flex;
+    }
+    .bt .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 40%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+    @media (max-width:800px) {
+      .bt{
+        justify-content: center;
+      }
+      .bt .btnSubmit{
+        width: 50%;
+      }
+    }
+    @media (max-width:400px) {
+      .bt{
+        justify-content: center;
+      }
+      .bt .btnSubmit{
+        width: 80%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  {% include "navbar.html" %}
+  <!--- login page for doctor by admin(sumit)  ---------->
+  <div class="main">
+    <br><br>
+    <br><br>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="container register-form">
+        <div class="form">
+          <div class="note">
+            <p>MFD - Login Page</p>
+          </div>
+  
+          <div class="form-content">
+            <div class="row">
+              <div class="col-md-6">
+  
+                <div class="form-group">
+                  <!-- {% render_field form.username class="form-control" name="username" placeholder="Username" %} -->
+                  <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+  
+              </div>
+              <div class="col-md-6">
+  
+                <div class="form-group">
+                  <!-- {% render_field form.password class="form-control" name="password" placeholder="Password" %} -->
+                  <input type="password" class="form-control" name="password" placeholder="Password" id="passw">
+                  <input type="checkbox" id="show" onclick="showPSD()"> Show Password
+                </div>
+  
+              </div>
+            </div>
+            <div class="bt">
+              <button type="submit" class="btnSubmit">Login</button>
+            </div>
+            <div class="text-center">Do not have account? <a href="{% url 'register' %}">Signup here</a></div>
+          </div>
+        </div>
+      </div>
+  
+    </form>
+  </div>
+
+  {% include "footer.html" %}
+  <script>
+    var psd = document.getElementById('passw')
+    function showPSD(){
+      if (psd.type == "password"){
+        psd.type = "text";
+      }else{
+        psd.type = "password";
+      }
+    }
+  </script>
+</body>
+
+</html>

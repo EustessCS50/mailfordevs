@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+
+    .bs-example {
+      margin: 0px;
+    }
+    /* .justify-content-between {
+      -ms-flex-pack: justify!important;
+      justify-content: right;
+    } */
+    .navbar-collapse {
+      -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+      -ms-flex-positive: 1;
+      flex-grow: 1;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+    .justify-content-between {
+      -ms-flex-pack: justify!important;
+      justify-content: flex-end!important;
+      margin-right:90px;
+    }
+    nav{
+      display: flex;
+      justify-content: center;
+      color: aliceblue;
+    }
+
+    .navbar-brand {
+      font-size: 20px;
+      font-family: sans-serif;
+
+    }
+    .navbar-nav{
+      border-radius: 5px;
+      align-items: center;
+      color: rgb(193, 125, 0);
+    }
+    /* .navbar-collapse{
+      color: rgb(193, 125, 0);
+    } */
+    .navbar-dark .navbar-nav .nav-link {
+    color: whitesmoke;
+}
+    .navbar-nav a .nav-item .nav-link{
+      color: aliceblue;
+    }
+    a:link {
+      text-decoration: none;
+    }
+    .logo{
+      display: flex;
+      place-items: center;
+      justify-content: center;
+      background-color: rgb(8, 8, 8);
+    }
+    .logo img{
+      max-height:200px;
+      max-width:800px;
+      justify-content: center;
+    }
+    @media (max-width:800px){
+      .navbar-nav{
+        background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      }
+      .justify-content-between{
+        margin-right: 50px;
+      }
+    }
+    @media (max-width:400px){
+      .navbar-nav{
+        background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      }
+      .justify-content-between{
+        margin-right: 0px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- <div class="logo">
+    <img src="{% static 'img/colorlogo-nobg.svg' %}" alt="">
+  </div> -->
+
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="height:50px; align-items: center; background: -webkit-linear-gradient(left, #0072ff, #8811c5);">
+      <a href="{% url 'home' %}" class="navbar-brand" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><span><</span>MailForDevs<span>/></span></a>
+      <!-- <a href="{% url 'home' %}" class="navbar-brand"><img src="{% static 'img/colorlogo-nobg.svg' %}" alt=""></a> -->
+      <!-- Header buttons goes here e.g lang and darkmode -->
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+
+        <div class="navbar-nav">
+          <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
+          <a href="{% url 'docs' %}" class="nav-item nav-link">Docs</a>
+          <a href="{% url 'contact' %}" class="nav-item nav-link">Contact Us</a>
+          {% if request.user.password is None %}
+            <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
+          {% else%}
+          <a href="{% url 'accounts' %}" class="nav-item nav-link">Accounts</a>
+          {% endif %}
+        </div>
+
+      </div>
+    </nav>
+  </div>
+
+</body>
+
+</html>
